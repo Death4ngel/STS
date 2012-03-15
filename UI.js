@@ -11,20 +11,12 @@ worker.addEventListener('message', function(e) {
 		case 'completed':
 			completed(data.arg);
 			break;
-		/*case 'totalProg':
-			progress(data.arg);
-			break;
-		case 'progress':
-			updateProg();
-			break;*/
 		case 'debug':
 			alert(data.arg);
 			break;
 	}
 }, false);
 
-var curProg = 0;
-var totalProg;
 var teamID = 0;
 var venueID = 0;
 var numTeams = 0;
@@ -160,11 +152,6 @@ function delVenue(num) {
 	
 	runSTS();
 }
-
-/*function getSpace(num) {
-var index = num - 1;
-worker.postMessage({'cmd': 'grab_results', 'arg': index});
-}*/
 
 function updateUI(S) {
 	initScheTable();
@@ -506,8 +493,6 @@ function runSTS() {
 	elem.setAttribute('onclick', 'play(this)');
 	elem.disabled = false;
 	
-	curProg = 0;
-	
 	var table = document.getElementById('scheTable');
 	//table.innerHTML = '';
 	
@@ -553,16 +538,6 @@ function initConstraints() {
 			constraints(r, t);
 		}
 	}
-}
-
-function progress(total) {
-	totalProg = total;
-}
-
-function updateProg() {
-	var elem = document.getElementById('progress');
-	curProg++;
-	elem.innerText = curProg + ' / ' + totalProg;
 }
 
 function jump(elem) {
