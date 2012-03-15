@@ -1,3 +1,24 @@
 table {
 	border-radius: 15px;
 }
+
+a.button{
+background:url(img/button.gif);
+display:block;
+color:#555555;
+font-weight:bold;
+height:30px;
+line-height:29px;
+margin-bottom:14px;
+text-decoration:none;
+width:191px;
+}
+a:hover.button{
+color:#0066CC;
+}
+
+.delete{
+background:url(delete.ico) no-repeat 10px 8px;
+text-indent:30px;
+display:block;
+}
