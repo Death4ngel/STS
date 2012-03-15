@@ -61,9 +61,7 @@ cell.appendChild(input);
 /*var del = document.createElement('button');
 del.innerText = 'X';
 del.setAttribute('onclick', 'delTeam(' + numTeams + ')');*/
-cell.innerHTML += '<a href="#" class="button">
-	<span class="delete" />
-</a>';
+cell.innerHTML += '<a href="#" class="button"><span class="delete"/></a>';
 //cell.appendChild(del);
 
 if (numVenues === 0 || numVenues < Math.floor(numTeams / 2)) {
