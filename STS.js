@@ -5,22 +5,6 @@ importScripts('fd.js');
 addEventListener('message', function(e) {
 	var data = e.data;
 	switch(data.cmd) {
-<<<<<<< HEAD
-=======
-    /*case 'set_state_to_running':
-        STS_Engine.set_state_to_running();
-        STS_Engine.generate_solns();		
-        break;
-    case 'set_state_to_paused':
-        STS_Engine.set_state_to_paused();
-        break;
-    case 'generate_first_soln':
-        STS_Engine.update_data(data.arg);
-        STS_Engine.generate_first_soln();
-		postMessage({'cmd': 'soln',
-					 'arg': STS_Engine.return_soln(0)});
-        break;*/
->>>>>>> master
 	case 'generate_first_soln':
 		STS_Engine.update_data(data.arg);
 		STS_Engine.generate_first_soln(); // just generate one solution
@@ -29,11 +13,6 @@ addEventListener('message', function(e) {
 		STS_Engine.generate_solns(data.arg); // data.arg = number of iterations before stopping
 		break;
     case 'grab_results':
-<<<<<<< HEAD
-=======
-        /*postMessage({'soln': STS_Engine.return_soln(data.arg),
-                     'state': STS_Engine.return_state()});*/
->>>>>>> master
 		postMessage({'cmd': 'soln',
 					 'arg': STS_Engine.return_soln(data.arg)});
         break;
@@ -84,10 +63,6 @@ var STS_Engine = (function() {
 			varnameArray[r] = [];
 			for (t = 1; t <= numTeams; t++) {
 				varnameArray[r][t] = 'R' + r + 'T' + t;
-<<<<<<< HEAD
-=======
-				postMessage({'cmd': 'progress'});
->>>>>>> master
 			}
 		}
      
@@ -96,10 +71,6 @@ var STS_Engine = (function() {
 			for (t = 1; t <= numTeams; t++) {
 				S.decl(varnameArray[r][t]+'O', [[1 - (numTeams % 2), numTeams]]); // 0 for "bye"
 				S.decl(varnameArray[r][t]+'V', [[0, numVenues]]); // 0 for "bye" venues
-<<<<<<< HEAD
-=======
-				postMessage({'cmd': 'progress'});
->>>>>>> master
 			}
 		}
 
@@ -124,11 +95,6 @@ var STS_Engine = (function() {
 					var tempVar3 = S.temp([[0, 1]]); // When you don't get a "bye", your venue is 1~numVenues
 					S.reified('neq', [varnameArray[r][t]+'O', S.const(0)], tempVar3);
 					S.reified('neq', [varnameArray[r][t]+'V', S.const(0)], tempVar3);
-<<<<<<< HEAD
-=======
-					
-					postMessage({'cmd': 'progress'});
->>>>>>> master
 				}
 				arr.push(varnameArray[r][t]+'O');
 			}
@@ -140,10 +106,6 @@ var STS_Engine = (function() {
 			arr = [];
 			for (r = 1; r <= numRounds; r++) {
 				arr.push(varnameArray[r][t]+'O');
-<<<<<<< HEAD
-=======
-				postMessage({'cmd': 'progress'});
->>>>>>> master
 			}
 			//Each team play against distinct teams
 			S.distinct(arr);
@@ -153,10 +115,6 @@ var STS_Engine = (function() {
 		for (var varname in constraintTArr) {
 			for (var index in constraintTArr[varname]) {
 				S.neq(varname, S.const(constraintTArr[varname][index]));
-<<<<<<< HEAD
-=======
-				postMessage({'cmd': 'progress'});
->>>>>>> master
 			}
 		}
 		
@@ -164,10 +122,6 @@ var STS_Engine = (function() {
 		for (var varname in constraintVArr) {
 			for (var index in constraintVArr[varname]) {
 				S.neq(varname, S.const(constraintVArr[varname][index]));
-<<<<<<< HEAD
-=======
-				postMessage({'cmd': 'progress'});
->>>>>>> master
 			}
 		}
 
@@ -176,14 +130,7 @@ var STS_Engine = (function() {
 			
 			// Add space to spaceStack
 			spaceStack.push(S);
-			
-<<<<<<< HEAD
-=======
-			// Update state
-			//state = 'generate_first'; // Special case of "running"
-			//postMessage({'cmd': 'set_state', 'arg': 'generate_first'});
-			
->>>>>>> master
+
 			// Run soln_generator
 			soln_generator(1);
 		} catch (e) {
@@ -335,8 +282,4 @@ var STS_Engine = (function() {
 	}
 	
 	return that;
-<<<<<<< HEAD
 }) ();
-=======
-}) ();
->>>>>>> master
