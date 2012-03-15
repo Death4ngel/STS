@@ -58,10 +58,13 @@ input.value = name;
 input.style.width = 100;
 input.setAttribute('onchange', 'updateTeamName(' + numTeams + ')');
 cell.appendChild(input);
-var del = document.createElement('button');
+/*var del = document.createElement('button');
 del.innerText = 'X';
-del.setAttribute('onclick', 'delTeam(' + numTeams + ')');
-cell.appendChild(del);
+del.setAttribute('onclick', 'delTeam(' + numTeams + ')');*/
+cell.innerHTML += '<a href="#" class="button">
+	<span class="delete" />
+</a>';
+//cell.appendChild(del);
 
 if (numVenues === 0 || numVenues < Math.floor(numTeams / 2)) {
 	addVenue();
@@ -345,7 +348,7 @@ function initScheTable() {
 					var varname = 'R' + r + 'T' + t;
 					var table2 = document.createElement('table');
 					table2.id = varname;
-					table2.border = 1;
+					//table2.border = 1;
 					table2.R = r;
 					table2.T = t;
 					table2.setAttribute('onclick', 'showRG(R, T)');
