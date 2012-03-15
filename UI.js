@@ -11,12 +11,26 @@ worker.addEventListener('message', function(e) {
 		case 'completed':
 			completed(data.arg);
 			break;
+<<<<<<< HEAD
+=======
+		/*case 'totalProg':
+			progress(data.arg);
+			break;
+		case 'progress':
+			updateProg();
+			break;*/
+>>>>>>> master
 		case 'debug':
 			alert(data.arg);
 			break;
 	}
 }, false);
 
+<<<<<<< HEAD
+=======
+var curProg = 0;
+var totalProg;
+>>>>>>> master
 var teamID = 0;
 var venueID = 0;
 var numTeams = 0;
@@ -58,11 +72,18 @@ input.value = name;
 input.style.width = 100;
 input.setAttribute('onchange', 'updateTeamName(' + numTeams + ')');
 cell.appendChild(input);
+<<<<<<< HEAD
 /*var del = document.createElement('button');
 del.innerText = 'X';
 del.setAttribute('onclick', 'delTeam(' + numTeams + ')');*/
 cell.innerHTML += '<a href="#" class="button"><span class="delete"/></a>';
 //cell.appendChild(del);
+=======
+var del = document.createElement('button');
+del.innerText = 'X';
+del.setAttribute('onclick', 'delTeam(' + numTeams + ')');
+cell.appendChild(del);
+>>>>>>> master
 
 if (numVenues === 0 || numVenues < Math.floor(numTeams / 2)) {
 	addVenue();
@@ -154,6 +175,14 @@ function delVenue(num) {
 	runSTS();
 }
 
+<<<<<<< HEAD
+=======
+/*function getSpace(num) {
+var index = num - 1;
+worker.postMessage({'cmd': 'grab_results', 'arg': index});
+}*/
+
+>>>>>>> master
 function updateUI(S) {
 	initScheTable();
 	
@@ -346,7 +375,11 @@ function initScheTable() {
 					var varname = 'R' + r + 'T' + t;
 					var table2 = document.createElement('table');
 					table2.id = varname;
+<<<<<<< HEAD
 					//table2.border = 1;
+=======
+					table2.border = 1;
+>>>>>>> master
 					table2.R = r;
 					table2.T = t;
 					table2.setAttribute('onclick', 'showRG(R, T)');
@@ -494,6 +527,11 @@ function runSTS() {
 	elem.setAttribute('onclick', 'play(this)');
 	elem.disabled = false;
 	
+<<<<<<< HEAD
+=======
+	curProg = 0;
+	
+>>>>>>> master
 	var table = document.getElementById('scheTable');
 	//table.innerHTML = '';
 	
@@ -541,6 +579,19 @@ function initConstraints() {
 	}
 }
 
+<<<<<<< HEAD
+=======
+function progress(total) {
+	totalProg = total;
+}
+
+function updateProg() {
+	var elem = document.getElementById('progress');
+	curProg++;
+	elem.innerText = curProg + ' / ' + totalProg;
+}
+
+>>>>>>> master
 function jump(elem) {
 	var num = elem.value;
 	var slider = document.getElementById('slider');
