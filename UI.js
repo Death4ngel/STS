@@ -36,39 +36,42 @@ document.onclick = function(e) {
 }
 
 function addTeam() {
-teamID++;
-numTeams++;
-numRounds = numTeams % 2 === 0 ? numTeams - 1: numTeams;
+	teamID++;
+	numTeams++;
+	numRounds = numTeams % 2 === 0 ? numTeams - 1: numTeams;
 
-//Code
-var name = 'Team ' + teamID;
-teamNameArr[numTeams] = name;
-addRGTArr();
-addRGVArr();
-//initScheTable();
+	//Code
+	var name = 'Team ' + teamID;
+	teamNameArr[numTeams] = name;
+	addRGTArr();
+	addRGVArr();
+	//initScheTable();
 
-//HTML
-var table = document.getElementById('teamTable');
-var row = table.insertRow(table.rows.length - 1);
-var cell = row.insertCell();
-var input = document.createElement('input');
-input.id = 'team' + numTeams;
-input.type = 'text';
-input.value = name;
-input.style.width = 100;
-input.setAttribute('onchange', 'updateTeamName(' + numTeams + ')');
-cell.appendChild(input);
-/*var del = document.createElement('button');
-del.innerText = 'X';
-del.setAttribute('onclick', 'delTeam(' + numTeams + ')');*/
-cell.innerHTML += '<a href="#" class="button"><span class="delete"/></a>';
-//cell.appendChild(del);
+	//HTML
+	var cell =	$('#teamTable tr:last').before('<tr>')
+				.prev().append('<td>')
+				.children('td');
+	var input = $('<input type="text"/>').attr({
+											id:			'team' + numTeams,
+											value:		name,
+											onchange:	'updateTeamName(' + numTeams + ')'
+										});
+	var del =	$('<a>').attr({
+							href:	'#',
+							class:	'button'
+						}).append('<span>')
+				.children().attr({
+								class: 'delete',
+							}).text('X')
+				.parent();
+	cell.append(input)
+		.append(del);
 
-if (numVenues === 0 || numVenues < Math.floor(numTeams / 2)) {
-	addVenue();
-} else {
-	runSTS();
-}
+	if (numVenues === 0 || numVenues < Math.floor(numTeams / 2)) {
+		addVenue();
+	} else {
+		runSTS();
+	}
 }
 
 function delTeam(num) {
