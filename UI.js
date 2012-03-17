@@ -57,7 +57,6 @@ function addTeam() {
 											onchange:	'updateTeamName(' + numTeams + ')'
 										});
 	var del =	$('<a>').attr({
-							href:		'#',
 							class:		'button delete',
 							onclick:	'delTeam(' + numTeams + ')'
 						}).text(' ')
@@ -100,24 +99,25 @@ function delTeam(num) {
 }
 
 function addVenue() {
-	//HTML
 	numVenues++;
 	venueID++;
-	var table = document.getElementById('venueTable');
-	var row = table.insertRow(table.rows.length - 1);
-	var cell = row.insertCell();
-	var input = document.createElement('input');
-	var name = 'Venue ' + venueID; //number of venue. To be changed later.
-	input.id = 'venue' + numVenues;
-	input.type = 'text';
-	input.value = name
-	input.style.width = 100;
-	input.setAttribute('onchange', 'updateVenueName(' + numVenues + ')');
-	cell.appendChild(input);
-	var del = document.createElement('button');
-	del.innerText = 'X';
-	del.setAttribute('onclick', 'delVenue(' + numVenues + ')');
-	cell.appendChild(del);
+	var name = 'Venue ' + venueID;
+	
+	//HTML
+	var cell =	$('#venueTable tr:last').before('<tr>')
+				.prev().append('<td>')
+				.children('td');
+	var input = $('<input type="text"/>').attr({
+											id:			'venue' + numVenues,
+											value:		name,
+											onchange:	'updateVenueName(' + numVenues + ')'
+										});
+	var del =	$('<a>').attr({
+							class:		'button delete',
+							onclick:	'delVenue(' + numVenues + ')'
+						}).text(' ')
+	cell.append(input)
+		.append(del);
 
 	//Code
 	venueNameArr[numVenues] = name;
