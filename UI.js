@@ -60,8 +60,9 @@ function addTeam() {
 							class:		'button delete',
 							onclick:	'delTeam(' + numTeams + ')'
 						}).text(' ')
-	cell.append(input)
-		.append(del);
+	cell.append(del)
+		.append(input);
+		
 
 	if (numVenues === 0 || numVenues < Math.floor(numTeams / 2)) {
 		addVenue();
@@ -116,8 +117,8 @@ function addVenue() {
 							class:		'button delete',
 							onclick:	'delVenue(' + numVenues + ')'
 						}).text(' ')
-	cell.append(input)
-		.append(del);
+	cell.append(del)
+		.append(input);
 
 	//Code
 	venueNameArr[numVenues] = name;
