@@ -57,13 +57,10 @@ function addTeam() {
 											onchange:	'updateTeamName(' + numTeams + ')'
 										});
 	var del =	$('<a>').attr({
-							href:	'#',
-							class:	'button'
-						}).append('<span>')
-				.children().attr({
-								class: 'delete',
-							}).text('X')
-				.parent();
+							href:		'#',
+							class:		'button delete',
+							onclick:	'delTeam(' + numTeams + ')'
+						}).text(' ')
 	cell.append(input)
 		.append(del);
 
@@ -191,31 +188,31 @@ function updateSlider(num) {
 	numSoln.innerText = num;
 }
 
-function play(elem) {
+function play() {
 	worker.postMessage({'cmd': 'run', 'arg': 10});
-	elem.innerText = 'Pause';
-	elem.setAttribute('onclick', 'pause(this)');
+	$('#playpause').attr({
+		class:		'button pause',
+		onclick:	'pause()'
+	});
 }
 
-function pause(elem) {
-	elem.innerText = 'Play';
-	elem.setAttribute('onclick', 'play(this)');
+function pause() {
+	$('#playpause').attr({
+		class:		'button play',
+		onclick:	'play()'
+	});
 }
 
 function partial(num) {
 	updateSlider(num);
-	var elem = document.getElementById('playpause');
-	if (elem.innerText === 'Pause') {
+	if ($('#playpause').hasClass('pause')) {
 		worker.postMessage({'cmd': 'run', 'arg': 10});
 	}
 }
 
 function completed(num) {
 	updateSlider(num);
-	var elem = document.getElementById('playpause');
-	elem.innerText = 'Completed';
-	elem.onclick = null;
-	elem.disabled = true;
+	$('#playpause').attr('class', 'button complete').removeAttr('onclick');
 }
 
 function showRG(r, t) {	
@@ -224,7 +221,8 @@ function showRG(r, t) {
 	}
 	var cell = document.getElementById('R' + r + 'T' + t);
 	hlCell = cell;
-	cell.border = 10;
+	//cell.border = 10;
+	cell.setAttribute('class', 'select');
 	for (var o = 1; o <= numTeams; o++) {
 		var team = document.getElementById('team' + o);		
 		if (o === t) {
@@ -261,7 +259,8 @@ function removeColours() {
 		elem.style.backgroundColor = '';
 		elem.onclick = null;
 	}
-	hlCell.border = 1;
+	//hlCell.border = 1;
+	hlCell.setAttribute('class', '');
 	hlCell = null;
 }
 
@@ -335,9 +334,17 @@ function delRGVArr(num) {
 
 function initScheTable() {
 	var table = document.getElementById('scheTable');
-	table.innerHTML = '';
+	table.innerHTML = '<thead></thread><tbody></tbody>';
+	var headerRow = $('#scheTable >thead').append('<tr>').children();
+	for (var i = 0; i <= numRounds; i++) {
+		headerRow.append('<th>');
+		if (i !== 0) { headerRow.children('th:last').text('Round ' + i); }
+	}
 	
-	for (var t = 0; t <= numTeams; t++) {
+	table = table.tBodies[0];
+	table.insertRow(-1);
+	
+	for (var t = 1; t <= numTeams; t++) {
 		table.insertRow(-1);
 		for (var r = table.rows[t].cells.length; r <= numRounds; r++) {
 			var cell = table.rows[t].insertCell(-1);
@@ -365,6 +372,8 @@ function initScheTable() {
 			}
 		}
 	}
+	var testWidth = $('#scheTable').css('width');
+	$('#slider').css('width', testWidth);
 }
 
 function parseRGTArr() {
@@ -492,10 +501,10 @@ function constraints(r, t) {
 }
 
 function runSTS() {	
-	var elem = document.getElementById('playpause');
-	elem.innerText = 'Play';
-	elem.setAttribute('onclick', 'play(this)');
-	elem.disabled = false;
+	$('#playpause').attr({
+		class:		'button play',
+		onclick:	'play()'
+	});
 	
 	var table = document.getElementById('scheTable');
 	//table.innerHTML = '';

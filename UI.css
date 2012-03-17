@@ -1,24 +1,92 @@
-table {
-	border-radius: 15px;
+body {
+        text-align:center;
+}
+#container {
+        margin: auto auto;
+        width: 800;
+        text-align:left;
 }
 
-/*a.button{
-background:url(img/button.gif);
-display:block;
-color:#555555;
-font-weight:bold;
-height:30px;
-line-height:29px;
-margin-bottom:14px;
-text-decoration:none;
-width:191px;
-}
-a:hover.button{
-color:#0066CC;
+#scheTable {
+	font: 85% "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS", sans-serif;
+	padding: 0;
+	margin: 0;
+	border-collapse: collapse;
+	color: #333;
+	background: #F3F5F7;
 }
 
-.delete{
-background:url(delete.ico) no-repeat 10px 8px;
-text-indent:30px;
-display:block;
-}*/
+table  thead  th {
+	background: #3A4856;
+	padding: 15px 10px;
+	color: #fff;
+	font-weight: normal;
+}
+
+.select {
+	border-width: thick;
+	border-style: solid;
+}
+#scheTable > tbody {border-bottom: 1px solid #EAECEE;}
+#scheTable > tbody > tr > td:first-child {
+	background: #3A4856;
+	padding: 15px 10px;
+	color: #fff;
+	font-weight: normal;
+}
+#scheTable > tbody > tr {background: #F3F5F7;}
+#scheTable > tbody > tr.odd { 
+	background: #F0F2F4;
+}
+#scheTable > tbody > tr:hover {background: #EAECEE; color: #111;}
+
+a.button {
+	text-decoration:none;
+	display: inline-block;
+	width:20px;
+	line-height: 20px;
+	-webkit-user-select: none;
+}
+
+a.delete{	
+	background: url(img/user-delete.gif) 5px center no-repeat;
+}
+
+a.add{
+	color:#555555;
+	font-weight:bold;
+	line-height:25px;
+	background:url(img/user-plus.gif) 5px center no-repeat;
+	text-indent:25px;
+	border:1px outset white;
+	width:140px;
+	background-color:WhiteSmoke;
+}
+
+a.play {
+	background:url(img/control-play.gif) 5px center no-repeat;
+}
+
+a.pause {
+	background:url(img/control-pause.gif) 5px center no-repeat;
+}
+
+a.complete {
+	background:url(img/go.gif) 5px center no-repeat;
+}
+
+a.prev {
+	background:url(img/control-back.gif) 5px center no-repeat;
+}
+
+a.next {
+	background:url(img/control-forward.gif) 5px center no-repeat;
+}
+
+input {
+	width:120px;
+}
+
+#slider {
+	vertical-align: middle;
+}
