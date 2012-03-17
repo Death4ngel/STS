@@ -5,20 +5,12 @@
 		<link rel="stylesheet" type="text/css" href="UI.css" />
 		<h1>Sports Tournament Scheduling</h1>
 		<div id="left">
-			<table id="teamTable">
-				<tr>
-					<td>
-						<a class="button add" onclick="addTeam()">Add a team!</a>
-					</td>
-				</tr>
-			</table>
-			<table id="venueTable">
-				<tr>
-					<td>
-						<a class="button add" onclick="addVenue()">Add a venue!</a>
-					</td>
-				</tr>
-			</table>
+			<form id="team">
+				<a class="button add" onclick="addTeam()">Teams</a>
+			</form>
+			<form id="venue">
+				<a class="button add" onclick="addVenue()">Venues</a>
+			</form>
 		</div>
 		<div id="main">
 			<table id="scheTable">

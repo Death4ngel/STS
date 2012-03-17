@@ -7,7 +7,7 @@ a.button {
 	-webkit-user-select: none;
 }
 
-a.add{
+/*a.add{
 	color:#555555;
 	font-weight:bold;
 	line-height:25px;
@@ -16,9 +16,15 @@ a.add{
 	border:1px outset white;
 	width:144px;
 	background-color:WhiteSmoke;
-}
+}*/
 
 a.button:hover { cursor: pointer; }
+a.add {
+	display: block;
+	padding-left: 25px;
+	font-weight: bold;
+	background:url(img/user-plus.gif) 5px center no-repeat;
+}
 a.delete{ background: url(img/user-delete.gif) 5px center no-repeat; }
 a.play { background:url(img/control-play.gif) 5px center no-repeat; }
 a.pause { background:url(img/control-pause.gif) 5px center no-repeat; }
@@ -73,15 +79,16 @@ position: absolute;
 top: 50px;
 bottom: 0; 
 left: 0;
-width: 155px; /*Width of frame div*/
+width: 200px; /*Width of frame div*/
 height: 100%;
 overflow: hidden; /*Disable scrollbars. Set to "scroll" to enable*/
+padding: 10px;
 }
 
 #main{
 position: absolute;
 top: 50px; 
-left: 155px; /*Set left value to WidthOfFrameDiv*/
+left: 200px; /*Set left value to WidthOfFrameDiv*/
 right: 0;
 bottom: 0;
 overflow: auto; 
@@ -90,4 +97,21 @@ overflow: auto;
 #curSoln {
 	width: 50px;
 	text-align:	center;
+}
+
+#team,  #venue{ 
+    width: 150px;
+    padding: 10px;
+    background: #f0f0f0;
+ 
+    /* Border style */
+    border: 1px solid #cccccc;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border-radius: 7px; 
+ 
+    /* Border Shadow */
+    -moz-box-shadow: 2px 2px 2px #cccccc;
+    -webkit-box-shadow: 2px 2px 2px #cccccc;
+    box-shadow: 2px 2px 2px #cccccc;
 }

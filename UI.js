@@ -48,9 +48,6 @@ function addTeam() {
 	//initScheTable();
 
 	//HTML
-	var cell =	$('#teamTable tr:last').before('<tr>')
-				.prev().append('<td>')
-				.children('td');
 	var input = $('<input type="text"/>').attr({
 											id:			'team' + numTeams,
 											value:		name,
@@ -60,9 +57,7 @@ function addTeam() {
 							class:		'button delete',
 							onclick:	'delTeam(' + numTeams + ')'
 						}).text(' ')
-	cell.append(del)
-		.append(input);
-		
+	$('#team').append(del).append(input);		
 
 	if (numVenues === 0 || numVenues < Math.floor(numTeams / 2)) {
 		addVenue();
@@ -83,19 +78,20 @@ function delTeam(num) {
 	//initScheTable();
 	
 	//HTML
-	var table = document.getElementById('teamTable');
-	table.deleteRow();
-	var count = 0;
-	for (var t = 1; t <= numTeams + 1; t++) {
-		if (t === num) { continue; }
-		var input = table.rows[count].cells[0].firstChild;
-		input.id = 'team' + (count + 1);
-		input.value = teamNameArr[count + 1];
-		var button = table.rows[count].cells[0].children[1];
-		button.setAttribute('onclick', 'delTeam(' + (count + 1) + ')');
-		count++;
-	}
+	// remove
+	$('#team a:eq(' + num + ')').remove();
+	$('#team' + num).remove();
 	
+	// update
+	$('#team a').each(function(i) {
+		if (i !== 0) { $(this).attr('onclick', 'delTeam(' + i + ')'); }
+	});
+	$('#team input').each(function(i) {
+		$(this).attr({
+					'id': 'team' + (i + 1),
+					'onchange': 'updateTeamName(' + (i + 1) + ')'
+		});
+	});
 	runSTS();
 }
 
@@ -105,9 +101,6 @@ function addVenue() {
 	var name = 'Venue ' + venueID;
 	
 	//HTML
-	var cell =	$('#venueTable tr:last').before('<tr>')
-				.prev().append('<td>')
-				.children('td');
 	var input = $('<input type="text"/>').attr({
 											id:			'venue' + numVenues,
 											value:		name,
@@ -117,8 +110,7 @@ function addVenue() {
 							class:		'button delete',
 							onclick:	'delVenue(' + numVenues + ')'
 						}).text(' ')
-	cell.append(del)
-		.append(input);
+	$('#venue').append(del).append(input);
 
 	//Code
 	venueNameArr[numVenues] = name;
@@ -139,18 +131,20 @@ function delVenue(num) {
 	//initScheTable();
 	
 	//HTML
-	var table = document.getElementById('venueTable');
-	table.deleteRow();
-	var count = 0;
-	for (var v = 1; v <= numVenues + 1; v++) {
-		if (v === num) { continue; }
-		var input = table.rows[count].cells[0].firstChild;
-		input.id = 'venue' + (count + 1);
-		input.value = venueNameArr[count + 1];
-		var button = table.rows[count].cells[0].children[1];
-		button.setAttribute('onclick', 'delVenue(' + (count + 1) + ')');
-		count++;
-	}
+	// remove
+	$('#venue a:eq(' + num + ')').remove();
+	$('#venue' + num).remove();
+	
+	// update
+	$('#venue a').each(function(i) {
+		if (i !== 0) { $(this).attr('onclick', 'delVenue(' + i + ')'); }
+	});
+	$('#venue input').each(function(i) {
+		$(this).attr({
+					'id': 'venue' + (i + 1),
+					'onchange': 'updateVenueName(' + (i + 1) + ')'
+		});
+	});
 	
 	runSTS();
 }
@@ -521,13 +515,13 @@ function runSTS() {
 }
 
 function updateTeamName(t) {
-	teamNameArr[t] = document.getElementById('teamTable').rows[t - 1].cells[0].firstChild.value;
+	teamNameArr[t] = $('#team input:eq('+ (t - 1) + ')').val();
 	var slider = document.getElementById('slider');
 	drag(slider.value);
 }
 
 function updateVenueName(v) {
-	venueNameArr[v] = document.getElementById('venueTable').rows[v - 1].cells[0].firstChild.value;
+	venueNameArr[v] = $('#venue input:eq('+ (v - 1) + ')').val();
 	var slider = document.getElementById('slider');
 	drag(slider.value);
 }
