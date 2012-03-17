@@ -1,55 +1,10 @@
-body {
-        text-align:center;
-}
-#container {
-        margin: auto auto;
-        width: 800;
-        text-align:left;
-}
-
-#scheTable {
-	font: 85% "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS", sans-serif;
-	padding: 0;
-	margin: 0;
-	border-collapse: collapse;
-	color: #333;
-	background: #F3F5F7;
-}
-
-table  thead  th {
-	background: #3A4856;
-	padding: 15px 10px;
-	color: #fff;
-	font-weight: normal;
-}
-
-.select {
-	border-width: thick;
-	border-style: solid;
-}
-#scheTable > tbody {border-bottom: 1px solid #EAECEE;}
-#scheTable > tbody > tr > td:first-child {
-	background: #3A4856;
-	padding: 15px 10px;
-	color: #fff;
-	font-weight: normal;
-}
-#scheTable > tbody > tr {background: #F3F5F7;}
-#scheTable > tbody > tr.odd { 
-	background: #F0F2F4;
-}
-#scheTable > tbody > tr:hover {background: #EAECEE; color: #111;}
-
+/* buttons */
 a.button {
 	text-decoration:none;
 	display: inline-block;
 	width:20px;
 	line-height: 20px;
 	-webkit-user-select: none;
-}
-
-a.delete{	
-	background: url(img/user-delete.gif) 5px center no-repeat;
 }
 
 a.add{
@@ -63,24 +18,46 @@ a.add{
 	background-color:WhiteSmoke;
 }
 
-a.play {
-	background:url(img/control-play.gif) 5px center no-repeat;
+a.button:hover { cursor: pointer; }
+a.delete{ background: url(img/user-delete.gif) 5px center no-repeat; }
+a.play { background:url(img/control-play.gif) 5px center no-repeat; }
+a.pause { background:url(img/control-pause.gif) 5px center no-repeat; }
+a.complete { background:url(img/go.gif) 5px center no-repeat; }
+a.prev { background:url(img/control-back.gif) 5px center no-repeat; }
+a.next { background:url(img/control-forward.gif) 5px center no-repeat; }
+
+/* schedule table */
+
+#scheTable {
+	font: 85% "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS", sans-serif;
+	padding: 0;
+	margin: 0;
+	border-collapse: collapse;
+	color: #333;
+	background: #F3F5F7;
 }
 
-a.pause {
-	background:url(img/control-pause.gif) 5px center no-repeat;
+#scheTable > tbody > tr > td:first-child {
+	background: #3A4856;
+	padding: 15px 10px;
+	color: #fff;
+	font-weight: normal;
+}
+#scheTable > tbody > tr:nth-child(even) { background: #F3F5F7; }
+#scheTable > tbody > tr:nth-child(odd) { background: #F0F2F4; }
+#scheTable > tbody > tr:hover {background: #EAECEE; color: #111;}
+#scheTable > tbody {border-bottom: 1px solid #EAECEE;}
+
+table  thead  th {
+	background: #3A4856;
+	padding: 15px 10px;
+	color: #fff;
+	font-weight: normal;
 }
 
-a.complete {
-	background:url(img/go.gif) 5px center no-repeat;
-}
-
-a.prev {
-	background:url(img/control-back.gif) 5px center no-repeat;
-}
-
-a.next {
-	background:url(img/control-forward.gif) 5px center no-repeat;
+.select {
+	border-width: thick;
+	border-style: solid;
 }
 
 input {
@@ -89,4 +66,28 @@ input {
 
 #slider {
 	vertical-align: middle;
+}
+
+#left{
+position: absolute;
+top: 50;
+bottom: 0; 
+left: 0;
+width: 150px; /*Width of frame div*/
+height: 100%;
+overflow: hidden; /*Disable scrollbars. Set to "scroll" to enable*/
+}
+
+#main{
+position: fixed;
+top: 50; 
+left: 150px; /*Set left value to WidthOfFrameDiv*/
+right: 0;
+bottom: 0;
+overflow: auto; 
+}
+
+#curSoln {
+	width: 50px;
+	text-align:	center;
 }
